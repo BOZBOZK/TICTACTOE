@@ -123,19 +123,31 @@ const winningPattern = [
   ['3', '6', '9']
 ];
 
+const showXmodal: boolean = ref(false)
+const newXName = ref("")
+const XNames = ref([])
 
-
-/*
-const toggleNameInput = () => {
-  showNameInput.value = !showNameInput.value;
+const addXname = () => {
+  XNames.value.push({
+    text: newXName.value ,
+  })
+  showXmodal.value = false;
+  newXName.value = ''
 }
-*/
 </script>
 
 <template>
   <main class="flex justify-center items-center min-h-screen bg-blue-500">
+    <div id="adding name" v-if="showXmodal" class="bg-slate-600 z-50 w-full h-full items-center">
+      <div class="modal">
+        <button @click="showXmodal = false">x</button>
+        <textarea v-model="newXName"/>
+        <button @click="addXname">Add Name</button>
+      </div>
+    </div>
     <!-- <audio scr="Vue/TicTacToe/public/Yellow Magic Orchestra - Rydeen (2018 Bob Ludwig Remastering.mp3" controls ></audio> -->
     <div id="main" class="text-center" >
+ 
       <div id="game-name-and-turn" class="flex justify-between items-center w-full">
         <div id="Xturn" :class="['w-12 h-12 rounded-full border-4 border-black', Xturn ? 'bg-red-600' : 'bg-blue-300']"></div>
         <h1 id="name" class="text-4xl font-bold">TicTacToe!</h1>
@@ -143,13 +155,8 @@ const toggleNameInput = () => {
       </div>
       <div id="players" class="flex justify-between items-center w-full">
         <div id="Xplayer" class="flex flex-col items-center bg-red-600 p-4 rounded-lg">
-          <!-- <div class="cursor-pointer" @click="toggleNameInput">
-            add name
-            <div v-if="showNameInput" class="mt-2">
-              <input v-model="playerName" type="text" class="p-2 rounded border">
-            </div>
-          </div> -->
-          <h1 class="text-2xl font-bold">X</h1>
+          <button @click="showXmodal = true">Add name</button>
+          <h1 class="text-2xl font-bold">{{ XNames.text }}</h1>
           <h3 class="text-xl">Score: {{ Xscore }}</h3>
         </div>
         <div id="Oplayer" class="flex flex-col items-center bg-blue-700 p-4 rounded-lg text-white">
