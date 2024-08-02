@@ -138,15 +138,17 @@ const addXname = () => {
 
 <template>
   <main class="flex justify-center items-center min-h-screen bg-blue-500">
-    <div id="adding name" v-if="showXmodal" class="bg-slate-600 z-50 w-full h-full items-center">
-      <div class="modal">
-        <button @click="showXmodal = false">x</button>
-        <textarea v-model="newXName"/>
-        <button @click="addXname">Add Name</button>
-      </div>
-    </div>
+    
     <!-- <audio scr="Vue/TicTacToe/public/Yellow Magic Orchestra - Rydeen (2018 Bob Ludwig Remastering.mp3" controls ></audio> -->
     <div id="main" class="text-center" >
+      <!-- <div id="adding-name" v-if="showXmodal" class=" z-10 w-screen h-screen items-center bg-slate-900 " > -->
+      <div v-if="showXmodal" class="adding-name">
+        <div class="modal">
+          <button @click="showXmodal = false">x</button>
+          <textarea v-model="newXName"/>
+          <button @click="addXname">Add Name</button>
+        </div>
+      </div>
  
       <div id="game-name-and-turn" class="flex justify-between items-center w-full">
         <div id="Xturn" :class="['w-12 h-12 rounded-full border-4 border-black', Xturn ? 'bg-red-600' : 'bg-blue-300']"></div>
@@ -174,3 +176,20 @@ const addXname = () => {
     </div>
   </main>
 </template>
+
+
+<style>
+.adding-name{
+  position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.77);
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+</style>
